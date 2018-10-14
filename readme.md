@@ -4,7 +4,8 @@
 
 ### O descargarse los geojson y `jq` y correr
 
-```jq --compact-output ".features" conseguiTarjeta.geojson > conseguiTarjetaCompact.geojson
+```
+jq --compact-output ".features" conseguiTarjeta.geojson > conseguiTarjetaCompact.geojson
 
 jq --compact-output ".features" cargaTuTarjeta.geojson > cargaTuTarjetaCompact.geojson
 
@@ -16,8 +17,7 @@ jq --compact-output ".features" registraTuTarjeta.geojson > registraTuTarjetaCom
 
 
 ### Luego correr para importar los archivos a mongo (obviamente lo tenes que tener instalado y corriendo el servicio)
-
-̣```
+```
 mongoimport --db sube -c conseguiTarjeta --file "conseguiTarjetaCompact.geojson" --jsonArray
 
 mongoimport --db sube -c cargaTarjeta --file "cargaTuTarjetaCompact.geojson" --jsonArray

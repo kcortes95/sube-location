@@ -25,7 +25,16 @@ router.get('/mongo', function(req, res, next) {
 router.get('/:table/near/:lat/:long/:dist', function(req, res, next) {
 
     mongo.findNear(req.params.table, req.params.lat, req.params.long, req.params.dist, result => {
-        res.status(200).send(result);
+        if(req.query.map === "true"){
+            res.render('map', {
+                title: "Express API", // Give a title to our page
+                jsonData: result // Pass data to the View
+            });
+        } else {
+            res.status(200).send(result);
+        }
+
+
     });
 });
 

@@ -1,8 +1,8 @@
-#Instrucciones:
+# Instrucciones:
 
-###ir a la carpeta geo-files donde estan los geoJsons compactos.
+### Ir a la carpeta geo-files donde estan los geoJsons compactos.
 
-###O descargarse los geojson y `jq` y correr
+### O descargarse los geojson y `jq` y correr
 
 ```jq --compact-output ".features" conseguiTarjeta.geojson > conseguiTarjetaCompact.geojson
 
@@ -10,13 +10,15 @@ jq --compact-output ".features" cargaTuTarjeta.geojson > cargaTuTarjetaCompact.g
 
 jq --compact-output ".features" realizaGestiones.geojson > realizaGestionesCompact.geojson
 
-jq --compact-output ".features" registraTuTarjeta.geojson > registraTuTarjetaCompact.geojson```
+jq --compact-output ".features" registraTuTarjeta.geojson > registraTuTarjetaCompact.geojson
+```
 
 
 
-###Luego correr para importar los archivos a mongo (obviamente lo tenes que tener instalado y corriendo el servicio)
+### Luego correr para importar los archivos a mongo (obviamente lo tenes que tener instalado y corriendo el servicio)
 
-̣```mongoimport --db sube -c conseguiTarjeta --file "conseguiTarjetaCompact.geojson" --jsonArray
+̣```
+mongoimport --db sube -c conseguiTarjeta --file "conseguiTarjetaCompact.geojson" --jsonArray
 
 mongoimport --db sube -c cargaTarjeta --file "cargaTuTarjetaCompact.geojson" --jsonArray
 
@@ -24,19 +26,25 @@ mongoimport --db sube -c realizaGestiones --file "realizaGestionesCompact.geojso
 
 mongoimport --db sube -c registraTarjeta --file "registraTuTarjetaCompact.geojson" --jsonArray
 
-mongoimport --db sube -c consultaSaldo --file "consultaSaldoCompact.geojson" --jsonArray```
+mongoimport --db sube -c consultaSaldo --file "consultaSaldoCompact.geojson" --jsonArray
+```
 
-###Entrar a mongo
+### Entrar a mongo
 
-```mongo```
+```
+mongo
+```
 
-###Cambiar la db a sube
+### Cambiar la db a sube
 
-```use sube```
+```
+use sube
+```
 
-###Crear los indices sphear2d sobre los points
+### Crear los indices sphear2d sobre los points
 
-```db.cargaTarjeta.createIndex( { geometry : "2dsphere" } )
+```
+db.cargaTarjeta.createIndex( { geometry : "2dsphere" } )
 
 db.conseguiTarjeta.createIndex( { geometry : "2dsphere" } )
 
@@ -44,11 +52,13 @@ db.realizaGestiones.createIndex( { geometry : "2dsphere" } )
 
 db.registraTarjeta.createIndex( { geometry : "2dsphere" } )
 
-db.consultaSaldo.createIndex( { geometry : "2dsphere" } )```
+db.consultaSaldo.createIndex( { geometry : "2dsphere" } )
+```
 
-###Probar que todo anda bien con esta query
+### Probar que todo anda bien con esta query
 
-```db.cargarTarjeta.find(
+```
+db.cargarTarjeta.find(
    {
      geometry:
        { $near:
@@ -59,9 +69,10 @@ db.consultaSaldo.createIndex( { geometry : "2dsphere" } )```
           }
        }
    }
-)```
+)
+```
 
-###Deberia devolver algo asi:
+### Deberia devolver algo asi:
 ```
  "_id" : ObjectId("5bc329fea7ee6cbd7363bbd8"), "type" : "Feature", "geometry" : { "type" : "Point", "coordinates" : [ -58.46359, -34.55601 ] }, "properties" : { "EmpresaId" : "35146|2", "Location" : "AV. CONGRESO 2516", "Description" : "ROMANO ARIEL", "Type" : 2, "time" : "08:00 A 21:00 HS", "provincia" : "CF", "localidad" : "NUÑEZ", "calification" : 5, "BranchType" : "AGENCIA DE LOTERÍA" } }
 { "_id" : ObjectId("5bc329fea7ee6cbd7363e340"), "type" : "Feature", "geometry" : { "type" : "Point", "coordinates" : [ -58.46322, -34.55574 ] }, "properties" : { "EmpresaId" : "56954|2", "Location" : "AV. CONGRESO 2463", "Description" : "GONZALO ZITO FEIJOO", "Type" : 2, "time" : "07:00 A 21:00 HS", "provincia" : "CF", "localidad" : "BELGRANO", "calification" : 5, "BranchType" : "KIOSCO" } }

@@ -1,15 +1,42 @@
-const Sequelize = require('sequelize');
 var config = require('./config_db');
 
-const db = new Sequelize(
-    config.postgres.database,
-    config.postgres.username,
-    config.postgres.password,
-    {
-        host: config.postgres.host,
-        dialect: 'postgres'
-    }
-);
+const { Client, Query } = require('pg');
+var conString = "postgres://"+config.postgres.username+":"+config.postgres.password+"@"+config.postgres.host+"/"+config.postgres.database; // Your Database Connection
 
-module.exports = db;
+function doQuery(query, callback){
+    var client = new Client(conString);
+
+    client.connect();
+    var query = client.query(new Query(query));
+    query.on("row", function (row, result) {
+        result.addRow(row);
+    });
+
+    query.on("end", function (result) {
+        var data = result.rows[0].row_to_json.features; // Save the JSON as variable data
+        callback(data);
+    });
+
+}
+
+//https://node-postgres.com/features/queries
+function doInsert(query, callback){
+    const client = new Client(conString);
+    client.connect();
+
+    client.query(query, (err, res) => {
+        console.log("alallala");
+        if (err) {
+            console.log(err.stack);
+        } else {
+            callback(res.rows[0]);
+        }
+    });
+
+}
+
+module.exports = {
+    doQuery: doQuery,
+    doInsert: doInsert
+};
 

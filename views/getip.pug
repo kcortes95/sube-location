@@ -1,0 +1,10 @@
+doctype html
+html
+  head
+    title IP real
+  body
+    | Mi IP es:
+    strong#ipId
+
+    script(type='text/javascript', src='/javascripts/testing.js')
+    script(type='text/javascript', src='https://api.ipify.org/?format=jsonp&callback=get_ip')

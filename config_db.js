@@ -7,6 +7,6 @@ var config = {
         password: 'gis',
         database: 'gis'
     }
-}
+};
 
-module.exports = config
+module.exports = config;

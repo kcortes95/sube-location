@@ -4,10 +4,12 @@ var query = require('./psql-query');
 const { Client, Query } = require('pg');
 var conString = "postgres://"+config.postgres.username+":"+config.postgres.password+"@"+config.postgres.host+"/"+config.postgres.database; // Your Database Connection
 
-function doQuery(query, callback){
-    var client = new Client(conString);
+var client = new Client(conString);
+client.connect();
 
-    client.connect();
+function doQuery(query, callback){
+    //var client = new Client(conString);
+    //client.connect();
     var query = client.query(new Query(query));
     query.on("row", function (row, result) {
         result.addRow(row);
@@ -22,11 +24,9 @@ function doQuery(query, callback){
 
 //https://node-postgres.com/features/queries
 function doInsert(query, callback){
-    const client = new Client(conString);
-    client.connect();
-
+    //const client = new Client(conString);
+    //client.connect();
     client.query(query, (err, res) => {
-        console.log("alallala");
         if (err) {
             console.log(err.stack);
         } else {
@@ -36,11 +36,9 @@ function doInsert(query, callback){
 }
 
 function getTopIP(callback){
-    const client = new Client(conString);
-    client.connect();
-
+    //const client = new Client(conString);
+    //client.connect();
     client.query(query.getTopIP(), (err, res) => {
-        console.log("Entro a getTopIP");
         if (err) {
             console.log(err.stack);
         } else {

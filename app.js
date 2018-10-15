@@ -12,7 +12,7 @@ var testingRouter = require('./routes/testing');
 
 var app = express();
 var server = http.createServer(app);
-server.listen(3000, 'localhost');
+//server.listen(3000, 'localhost');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

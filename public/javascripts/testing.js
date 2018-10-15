@@ -20,13 +20,17 @@ function fillDataVis(jsonfile){
 
     var ctx = document.getElementById("myChart");
     var myChart = new Chart(document.getElementById("doughnut-chart"), {
-        type: 'doughnut',
+        type: 'bar',
         data: {
             labels: newlabels,
             datasets: [
                 {
                     label: "Cantidad de request",
-                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                    backgroundColor: [  "#fa983a","#eb2f06","#1e3799","#3c6382","#38ada9",
+                                        "#f6b93b","#e55039","#4a69bd","#60a3bc","#78e08f",
+                                        "#fad390", "#f8c291","#6a89cc","#82ccdd","#b8e994",
+                                        "#e58e26","#b71540","#0c2461","#0a3d62","#079992"
+                                    ],
                     data: newdata
                 }
             ]

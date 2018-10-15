@@ -1,4 +1,5 @@
 var config = require('./config_db');
+var query = require('./psql-query');
 
 const { Client, Query } = require('pg');
 var conString = "postgres://"+config.postgres.username+":"+config.postgres.password+"@"+config.postgres.host+"/"+config.postgres.database; // Your Database Connection
@@ -32,11 +33,25 @@ function doInsert(query, callback){
             callback(res.rows[0]);
         }
     });
+}
 
+function getTopIP(callback){
+    const client = new Client(conString);
+    client.connect();
+
+    client.query(query.getTopIP(), (err, res) => {
+        console.log("Entro a getTopIP");
+        if (err) {
+            console.log(err.stack);
+        } else {
+            callback(res.rows);
+        }
+    });
 }
 
 module.exports = {
     doQuery: doQuery,
-    doInsert: doInsert
+    doInsert: doInsert,
+    getTopIP: getTopIP
 };
 

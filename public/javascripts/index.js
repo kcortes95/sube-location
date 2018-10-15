@@ -4,14 +4,13 @@ window.addEventListener('load', function() {
 
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
+        navigator.geolocation.getCurrentPosition(redirectToPosition);
     } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
+        alert("Geolocation is not supported by this browser.");
     }
 }
 
-function showPosition(position) {
-    //alert("Latitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude );
+function redirectToPosition(position) {
     window.location.href = "./psql/near/cargaTuTarjeta/"+position.coords.latitude+"/"+position.coords.longitude+"/1000";
 }
 

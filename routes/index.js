@@ -32,9 +32,11 @@ router.get('/psql/near/:table/:lat/:lng/:meters', function (req, res) {
             jsonData: result // Pass data to the View
         });
     });
-
     db.doInsert(query.insertToAccessToURL(req.ip, req.params.lat, req.params.lng), result => result);
+});
 
+router.get('/kevin', function(req, res, next) {
+    db.getTopIP(result => res.status(200).send(result));
 });
 
 router.get('/mongo', function(req, res, next) {
@@ -54,8 +56,6 @@ router.get('/mongo/:table/near/:lat/:long/:dist', function(req, res, next) {
         } else {
             res.status(200).send(result);
         }
-
-
     });
 });
 

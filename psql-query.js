@@ -26,10 +26,15 @@ function insertToAccessToURL(ip, lat, lng){
    //return "insert into accessToURL(ip, lat, lng) values ('$1',$2,$3)";
 }
 
+function getTopIP(){
+    return "select * from top_ip";
+}
+
 //insert into accessToURL(ip, lat, lng) values ('127.0.0.1',10.0,10.0)
 
 module.exports = {
     findAll: findAll,
     findNear: findNear,
-    insertToAccessToURL: insertToAccessToURL
+    insertToAccessToURL: insertToAccessToURL,
+    getTopIP: getTopIP
 };

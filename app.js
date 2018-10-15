@@ -8,7 +8,7 @@ var http = require('http');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var testingRouter = require('./routes/testing');
+var adminViewsRoutes = require('./routes/admin-views');
 
 var app = express();
 var server = http.createServer(app);
@@ -28,7 +28,7 @@ app.enable('trust proxy');
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/testing', testingRouter);
+app.use('/views', adminViewsRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

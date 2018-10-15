@@ -12,6 +12,27 @@ block content
         // Add JSON to map
         L.geoJson(myData, {
             onEachFeature: function (feature, layer) {
-                layer.bindPopup(feature.properties.f2);
+                layer.bindPopup(getStringField(feature.properties));
             }
         }).addTo(map);
+
+
+        function getStringField(prop) {
+            var text = "<table>"
+            if(prop.Location !== undefined){
+                text = text + "<tr><td>Direccion:</td><td>"+prop.Location+"</td></tr>";
+            } else if(prop.f1 !== undefined) {
+                text = text + "<tr><td>Direccion:</td><td>"+prop.f1+"</td></tr>";
+            }
+            if(prop.Description !== undefined) {
+                text = text + "<tr><td>Descripcion:</td><td>"+prop.Description+"</td></tr>";
+            } else if(prop.f2 !== undefined) {
+                text = text + "<tr><td>Descripcion:</td><td>"+prop.f2+"</td></tr>";
+            }
+            if(prop.time !== undefined) {
+                text = text + "<tr><td>Horario:</td><td>"+prop.time+"</td></tr>";
+            } else if(prop.f3 !== undefined) {
+                text = text + "<tr><td>Horario:</td><td>"+prop.f3+"</td></tr>";
+            }
+            return text + "</table>";
+        }

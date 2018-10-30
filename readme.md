@@ -18,15 +18,15 @@ jq --compact-output ".features" registraTuTarjeta.geojson > registraTuTarjetaCom
 
 ### Luego correr para importar los archivos a mongo (obviamente lo tenes que tener instalado y corriendo el servicio)
 ```
-mongoimport --db sube -c conseguiTarjeta --file "conseguiTarjetaCompact.geojson" --jsonArray
+mongoimport --db sube -c sube --file "conseguiTarjetaCompact.geojson" --jsonArray
 
-mongoimport --db sube -c cargaTarjeta --file "cargaTuTarjetaCompact.geojson" --jsonArray
+mongoimport --db sube -c sube --file "cargaTuTarjetaCompact.geojson" --jsonArray
 
-mongoimport --db sube -c realizaGestiones --file "realizaGestionesCompact.geojson" --jsonArray
+mongoimport --db sube -c sube --file "realizaGestionesCompact.geojson" --jsonArray
 
-mongoimport --db sube -c registraTarjeta --file "registraTuTarjetaCompact.geojson" --jsonArray
+mongoimport --db sube -c sube --file "registraTuTarjetaCompact.geojson" --jsonArray
 
-mongoimport --db sube -c consultaSaldo --file "consultaSaldoCompact.geojson" --jsonArray
+mongoimport --db sube -c sube --file "consultaSaldoCompact.geojson" --jsonArray
 ```
 
 ### Entrar a mongo
@@ -44,21 +44,13 @@ use sube
 ### Crear los indices sphear2d sobre los points
 
 ```
-db.cargaTarjeta.createIndex( { geometry : "2dsphere" } )
-
-db.conseguiTarjeta.createIndex( { geometry : "2dsphere" } )
-
-db.realizaGestiones.createIndex( { geometry : "2dsphere" } )
-
-db.registraTarjeta.createIndex( { geometry : "2dsphere" } )
-
-db.consultaSaldo.createIndex( { geometry : "2dsphere" } )
+db.sube.createIndex( { geometry : "2dsphere" } )
 ```
 
 ### Probar que todo anda bien con esta query
 
 ```
-db.cargarTarjeta.find(
+db.sube.find(
    {
      geometry:
        { $near:

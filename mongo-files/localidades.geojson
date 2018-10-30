@@ -1,4 +1,4 @@
-data = {
+{
 "type": "FeatureCollection",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
                                                                                 
@@ -10960,35 +10960,4 @@ data = {
 { "type": "Feature", "properties": { "nombre": "La Agraria", "tipo": "73004", "provincia": "06", "departamento": "Junín", "signo": 73004, "canthab": 40, "fuente": "Proyecto Sig250" }, "geometry": { "type": "Point", "coordinates": [ -60.845114, -34.65698 ] } },
 { "type": "Feature", "properties": { "nombre": "Kenny", "tipo": "73006", "provincia": "06", "departamento": "Carmen De Areco", "signo": 73006, "canthab": 324, "fuente": "Proyecto Sig250" }, "geometry": { "type": "Point", "coordinates": [ -60.003086, -34.360114 ] } }
 ]
-};
-
-
-conn = new Mongo();
-db = conn.getDB("sube");
-startTime = new Date();
-var i;
-var notZero = 0;
-for (i = 0; i < data.features.length; i++) { 
- 	long = data.features[i].geometry.coordinates[0];
- 	lat = data.features[i].geometry.coordinates[1];
-	count = db.sube.count(
-	   {
-	     geometry:
-	       { $near:
-	          {
-	            $geometry: { type: "Point",  coordinates: [ long, lat ] },
-	            $minDistance: 0,
-	            $maxDistance: 500
-	          }
-	       }
-	   }
-	);
-	if(count != 0)
-		notZero++;
-	print(count);	
 }
-  endTime = new Date();
-  var timeDiff = endTime - startTime;
-  print("No son 0 -> " + notZero);
-  print("Tiempo total: " + timeDiff);
-

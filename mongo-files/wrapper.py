@@ -1,25 +1,17 @@
 import time
 from subprocess import call
+import json
 
-positions = [
-[ -58.463379,-34.556003 ],
-[ -58.463379,-34.556003 ],
-[ -58.463379,-34.556003 ],
-[ -58.463379,-34.556003 ],
-[ -58.463379,-34.556003 ],
-[ -58.463379,-34.556003 ],
-[ -58.463379,-34.556003 ],
-[ -58.463379,-34.556003 ],
-[ -58.463379,-34.556003 ],
-[ -58.463379,-34.556003 ],
-[ -58.463379,-34.556003 ],
-[ -58.463379,-34.556003 ],
-[ -58.463379,-34.556003 ],
-[ -58.463379,-34.556003 ],
-[ -58.463379,-34.556003 ]
-]
+with open('localidades.geojson') as f:
+    data = json.load(f)
+
+local = data['features']
+points = []
+for l in local:
+	points.append(l['geometry']['coordinates'])
+
 start_time = time.time()
-for position in positions:
-	call(["mongo","--eval", 'var long=' +str(position[0]) + ',lat=' + str(position[1]) + ';',"test.js"])
+for point in points:
+	call(["mongo","--quiet", "--eval", 'var long=' +str(point[0]) + ',lat=' + str(point[1]) + ';',"test.js"])
 elapsed_time = time.time() - start_time
 print(elapsed_time)

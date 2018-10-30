@@ -10971,7 +10971,7 @@ var notZero = 0;
 for (i = 0; i < data.features.length; i++) { 
  	long = data.features[i].geometry.coordinates[0];
  	lat = data.features[i].geometry.coordinates[1];
-	count = db.sube.count(
+	/*count = db.sube.count(
 	   {
 	     geometry:
 	       { $near:
@@ -10982,7 +10982,17 @@ for (i = 0; i < data.features.length; i++) {
 	          }
 	       }
 	   }
+	);*/
+	count = db.sube2dIndex.count(
+	   {
+	   	"geometry.coordinates":
+	     {
+	     	$near: [ long, lat ],
+	     	$maxDistance: 0.01
+	     }
+	   }
 	);
+	//count = db.sube2dIndex.count();
 	if(count != 0)
 		notZero++;
 	print(count);	

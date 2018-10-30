@@ -29,6 +29,18 @@ mongoimport --db sube -c sube --file "registraTuTarjetaCompact.geojson" --jsonAr
 mongoimport --db sube -c sube --file "consultaSaldoCompact.geojson" --jsonArray
 ```
 
+```
+mongoimport --db sube -c sube2dIndex --file "conseguiTarjetaCompact.geojson" --jsonArray
+
+mongoimport --db sube -c sube2dIndex --file "cargaTuTarjetaCompact.geojson" --jsonArray
+
+mongoimport --db sube -c sube2dIndex --file "realizaGestionesCompact.geojson" --jsonArray
+
+mongoimport --db sube -c sube2dIndex --file "registraTuTarjetaCompact.geojson" --jsonArray
+
+mongoimport --db sube -c sube2dIndex --file "consultaSaldoCompact.geojson" --jsonArray
+```
+
 ### Entrar a mongo
 
 ```
@@ -45,6 +57,7 @@ use sube
 
 ```
 db.sube.createIndex( { geometry : "2dsphere" } )
+db.sube2dIndex.createIndex( { "geometry.coordinates" : "2d" } )
 ```
 
 ### Probar que todo anda bien con esta query
@@ -59,6 +72,17 @@ db.sube.find(
             $minDistance: 0,
             $maxDistance: 5000
           }
+       }
+   }
+)
+```
+
+```
+db.sube.find(
+   {
+     "geometry.coordinates":
+       { $near: [ -58.463379,-34.556003 ],
+         $maxDistance: 0.01
        }
    }
 )

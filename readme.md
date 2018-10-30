@@ -78,7 +78,7 @@ db.sube.find(
 ```
 
 ```
-db.sube.find(
+db.sube2dIndex.find(
    {
      "geometry.coordinates":
        { $near: [ -58.463379,-34.556003 ],

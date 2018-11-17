@@ -111,3 +111,21 @@ db.sube2dIndex.find(
 { "_id" : ObjectId("5bc329fea7ee6cbd7363bc3b"), "type" : "Feature", "geometry" : { "type" : "Point", "coordinates" : [ -58.46509, -34.55712 ] }, "properties" : { "EmpresaId" : "35120|2", "Location" : "MOLDES 2873", "Description" : "MUNDO NORMA ANUNCIADA", "Type" : 2, "time" : "08:00 A 21:00 HS", "provincia" : "CF", "localidad" : "BELGRANO", "calification" : 5, "BranchType" : "AGENCIA DE LOTERÍA" } }
 { "_id" : ObjectId("5bc329fea7ee6cbd7363bb66"), "type" : "Feature", "geometry" : { "type" : "Point", "coordinates" : [ -58.4615, -34.55704 ] }, "properties" : { "EmpresaId" : "36555|2", "Location" : "DR. PEDRO IGNACIO RIVERA 2430", "Description" : "FAZZIOLI CLAUDIA GRACIELA", "Type" : 2, "time" : "08:00 A 21:00 HS", "provincia" : "CF", "localidad" : "BELGRANO", "calification" : 5, "BranchType" : "AGENCIA DE LOTERÍA" } }
 ```
+
+## Run scala hitter
+```
+sudo apt-get install scala
+echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
+sudo apt-get update
+sudo apt-get install sbt
+```
+### Ir a la carpeta donde esta el proyecto (APiHitter) y correr
+```
+sbt "50 mongo coordinates.txt"
+```
+donde
+  - 50 es la cantidad de request simultaneas
+  - mongo es el engine (sino psql)
+  - coordinates.txt es el archivo con todas las coordenadas a solicitar
+Respetar las comillas

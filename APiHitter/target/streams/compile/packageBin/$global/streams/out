@@ -1,0 +1,29 @@
+[0m[[0m[0minfo[0m] [0m[0mPackaging /home/lucas/KEVIN/APiHitter/target/scala-2.12/apihitter_2.12-0.1.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	HitRequest.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lucas/KEVIN/APiHitter/target/scala-2.12/classes/HitRequest.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	hitter/HitRequest$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lucas/KEVIN/APiHitter/target/scala-2.12/classes/hitter/HitRequest$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	HitActor$$anonfun$receive$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lucas/KEVIN/APiHitter/target/scala-2.12/classes/HitActor$$anonfun$receive$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	HitRequest$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lucas/KEVIN/APiHitter/target/scala-2.12/classes/HitRequest$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Main$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lucas/KEVIN/APiHitter/target/scala-2.12/classes/Main$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lucas/KEVIN/APiHitter/target/scala-2.12/classes/Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	hitter/HitActor.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lucas/KEVIN/APiHitter/target/scala-2.12/classes/hitter/HitActor.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	hitter/Main$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lucas/KEVIN/APiHitter/target/scala-2.12/classes/hitter/Main$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	HitActor.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lucas/KEVIN/APiHitter/target/scala-2.12/classes/HitActor.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	hitter/HitRequest.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lucas/KEVIN/APiHitter/target/scala-2.12/classes/hitter/HitRequest.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	hitter/Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lucas/KEVIN/APiHitter/target/scala-2.12/classes/hitter/Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	hitter/HitActor$$anonfun$receive$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lucas/KEVIN/APiHitter/target/scala-2.12/classes/hitter/HitActor$$anonfun$receive$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	hitter[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lucas/KEVIN/APiHitter/target/scala-2.12/classes/hitter[0m
+[0m[[0m[0minfo[0m] [0m[0mDone packaging.[0m

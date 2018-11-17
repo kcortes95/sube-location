@@ -1,8 +1,8 @@
 var db;
 
-function findNear(table, lat, long, dist, callback) {
+function findNear(lat, long, dist, callback) {
     // Get the documents collection
-    const collection = db.collection(table);
+    const collection = db.collection("sube");
     // Find some documents
     collection.find(
         { 'geometry':

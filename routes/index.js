@@ -24,9 +24,9 @@ router.get('/psql/:table', function (req, res) {
 
 });
 
-router.get('/psql/near/:table/:lat/:lng/:meters', function (req, res) {
+router.get('/psql/:lat/:lng/:meters', function (req, res) {
 
-    db.doQuery(query.findNear(req.params.table, req.params.lat, req.params.lng, req.params.meters) , result => {
+    db.doQuery(query.findNear("sube", req.params.lat, req.params.lng, req.params.meters) , result => {
         res.render('map', {
             title: "Express API", // Give a title to our page
             jsonData: result // Pass data to the View
@@ -45,9 +45,9 @@ router.get('/mongo', function(req, res, next) {
     });
 });
 
-router.get('/mongo/:table/near/:lat/:long/:dist', function(req, res, next) {
+router.get('/mongo/:lat/:long/:dist', function(req, res, next) {
 
-    mongo.findNear(req.params.table, req.params.lat, req.params.long, req.params.dist, result => {
+    mongo.findNear(req.params.lat, req.params.long, req.params.dist, result => {
         if(req.query.map === "true"){
             res.render('map', {
                 title: "Express API", // Give a title to our page

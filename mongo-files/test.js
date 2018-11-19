@@ -5,6 +5,7 @@ var i;
 var notZero = 0;
 var cursor = db.localidades.find();
 cursor.forEach(function( aRow ) {
+
 	count = db.sube.count(
 	   {
 	     geometry:
@@ -17,6 +18,7 @@ cursor.forEach(function( aRow ) {
 	       }
 	   }
 	);
+
     db.localidades.update(
         { _id: aRow._id }, 
         { "$set": { "sube": count } }

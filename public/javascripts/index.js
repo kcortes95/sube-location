@@ -11,6 +11,6 @@ function getLocation() {
 }
 
 function redirectToPosition(position) {
-    window.location.href = "./psql/near/cargaTuTarjeta/"+position.coords.latitude+"/"+position.coords.longitude+"/1000";
+    window.location.href = "./psql/"+position.coords.latitude+"/"+position.coords.longitude+"/1000?map=true";
 }
 

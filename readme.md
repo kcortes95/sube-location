@@ -122,7 +122,7 @@ sudo apt-get install sbt
 ```
 ### Ir a la carpeta donde esta el proyecto (APiHitter) y correr
 ```
-sbt "50 mongo coordinates.txt"
+sbt "run 50 mongo coordinates.txt"
 ```
 donde
   - 50 es la cantidad de request simultaneas

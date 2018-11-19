@@ -3,7 +3,6 @@ const mongo = require('../mongo');
 const db = require('../db');
 const query = require('../psql-query');
 
-
 var router = express.Router();
 
 /* GET home page. */
@@ -25,14 +24,18 @@ router.get('/psql/:table', function (req, res) {
 });
 
 router.get('/psql/:lat/:lng/:meters', function (req, res) {
-
     db.doQuery(query.findNear("sube", req.params.lat, req.params.lng, req.params.meters) , result => {
-        res.render('map', {
-            title: "Express API", // Give a title to our page
-            jsonData: result // Pass data to the View
-        });
+        if(req.query.map === "true"){
+            res.render('map', {
+                title: "Express API", // Give a title to our page
+                jsonData: result // Pass data to the View
+            });
+        } else {
+            console.log("entro");
+            res.status(200).send(result);
+        }
     });
-    db.doInsert(query.insertToAccessToURL(req.ip, req.params.lat, req.params.lng), result => result);
+    //db.doInsert(query.insertToAccessToURL(req.ip, req.params.lat, req.params.lng), result => result);
 });
 
 router.get('/kevin', function(req, res, next) {

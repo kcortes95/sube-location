@@ -9,8 +9,8 @@ cursor.forEach(function( aRow ) {
         {
             "geometry.coordinates":
                 {
-                    $near: [ long, lat ],
-                    $maxDistance: 0.01
+                    $near: [ aRow.geometry.coordinates[0], aRow.geometry.coordinates[1]],
+                    $maxDistance: 0.005
                 }
         }
     );
@@ -23,6 +23,5 @@ cursor.forEach(function( aRow ) {
 
   endTime = new Date();
   var timeDiff = endTime - startTime;
-  print("No son 0 -> " + notZero);
   print("Tiempo total: " + timeDiff);
 

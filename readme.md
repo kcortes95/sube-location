@@ -60,6 +60,11 @@ db.sube.createIndex( { geometry : "2dsphere" } )
 db.sube2dIndex.createIndex( { "geometry.coordinates" : "2d" } )
 ```
 
+### Crear la tabla localidades(pararse en mongo-files)
+```
+mongoimport --db sube -c localidades --file "localidadesCompact.geojson" --jsonArray
+```
+
 ### Probar que todo anda bien con esta query
 
 ```

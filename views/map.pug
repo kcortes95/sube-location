@@ -7,7 +7,7 @@ block content
         var map = L.map('map', {center: [myData[0].geometry.coordinates[1], myData[0].geometry.coordinates[0]], zoom: 14});
         // Add OpenStreetMap tile layer to map element
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap'
+            attribution: 'GIS ITBA'
         }).addTo(map);
         // Add JSON to map
         L.geoJson(myData, {
@@ -15,7 +15,6 @@ block content
                 layer.bindPopup(getStringField(feature.properties));
             }
         }).addTo(map);
-
 
         function getStringField(prop) {
             var text = "<table>"

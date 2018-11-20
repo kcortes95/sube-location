@@ -1,0 +1,88 @@
+doctype html
+html
+    head
+        link(rel='stylesheet' href='https://unpkg.com/leaflet@1.3.1/dist/leaflet.css')
+        link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        script(src='https://unpkg.com/leaflet@1.3.1/dist/leaflet.js')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    body
+        nav.light-blue.lighten-4
+            .container
+                .nav-wrapper
+                    a.brand-logo(href='/')
+                        img(src='/images/sube.png', height='60px;', style='padding-top: 7px !important;')
+                    ul.right.hide-on-med-and-down
+                        li
+                            a(href='#')
+                                i.material-icons.left search
+                                | Buscar
+        br
+        .container
+            .row
+                .algo
+                    .col.s5
+                        | Latitud:
+                        input#lattext(type='text')
+                        br
+                    .col.s5
+                        | Longitud:
+                        input#longtext(type='text', name='Longitud', value='')
+                        br
+                    .col.s2
+                        p
+                            label
+                                input#inputMongo(name='groupdb', type='radio', value='mongo', checked='')
+                                span MongoDB
+                        p
+                            label
+                                input#inputPsql(name='groupdb', type='radio', value='psql')
+                                span PostgreSQL
+                    .col.s12.center
+                        button#submitButton.btn.waves-effect.waves-light.light-blue
+                            | Buscar
+                            i.material-icons.right send
+
+        #map
+            script.
+                var myData = !{JSON.stringify(jsonData)};
+                // Create variable to hold map element, give initial settings to map
+                var map = L.map('map', {
+                    center: [myData[0].geometry.coordinates[1], myData[0].geometry.coordinates[0]],
+                    zoom: 14
+                });
+                // Add OpenStreetMap tile layer to map element
+                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                    attribution: 'GIS ITBA'
+                }).addTo(map);
+                // Add JSON to map
+                L.geoJson(myData, {
+                    onEachFeature: function (feature, layer) {
+                        layer.bindPopup(getStringField(feature.properties));
+                    }
+                }).addTo(map);
+
+                function getStringField(prop) {
+                    var text = "<table>"
+                    if (prop.Location !== undefined) {
+                        text = text + "<tr><td>Direccion:</td><td>" + prop.Location + "</td></tr>";
+                    } else if (prop.f1 !== undefined) {
+                        text = text + "<tr><td>Direccion:</td><td>" + prop.f1 + "</td></tr>";
+                    }
+                    if (prop.Description !== undefined) {
+                        text = text + "<tr><td>Descripcion:</td><td>" + prop.Description + "</td></tr>";
+                    } else if (prop.f2 !== undefined) {
+                        text = text + "<tr><td>Descripcion:</td><td>" + prop.f2 + "</td></tr>";
+                    }
+                    if (prop.time !== undefined) {
+                        text = text + "<tr><td>Horario:</td><td>" + prop.time + "</td></tr>";
+                    } else if (prop.f3 !== undefined) {
+                        text = text + "<tr><td>Horario:</td><td>" + prop.f3 + "</td></tr>";
+                    }
+                    return text + "</table>";
+                }
+
+        script(src='/javascripts/map2.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js')

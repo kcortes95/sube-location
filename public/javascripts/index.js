@@ -1,5 +1,6 @@
 window.addEventListener('load', function() {
     getLocation();
+    buttonSearch();
 });
 
 function getLocation() {
@@ -14,3 +15,8 @@ function redirectToPosition(position) {
     window.location.href = "./psql/"+position.coords.latitude+"/"+position.coords.longitude+"/1000?map=true";
 }
 
+function buttonSearch(){
+    $( "#submitButton" ).click(function() {
+        alert( "Handler for .click() called." );
+    });
+}

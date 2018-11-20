@@ -186,3 +186,5 @@ fabric.properties
 
 # End of https://www.gitignore.io/api/node,macos,webstorm
 .idea/vcs.xml
+~$NFORME.docx
+~WRL2550.tmp
